@@ -19,7 +19,7 @@ configurations.all {
 }
 
 dependencies {
-    implementation 'org.jobrunr:jobrunr:1.0.0-SNAPSHOT'
+    implementation 'org.jobrunr:jobrunr:0.9.2'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
