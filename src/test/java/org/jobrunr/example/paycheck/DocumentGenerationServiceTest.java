@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.nio.file.Path;
 
 class DocumentGenerationServiceTest {
@@ -27,7 +28,7 @@ class DocumentGenerationServiceTest {
                 new Employee(1L, faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress()),
                 new WorkWeek(BigDecimal.valueOf(7.35), BigDecimal.valueOf(7), BigDecimal.valueOf(5.5), BigDecimal.valueOf(6.8), BigDecimal.valueOf(8))
         );
-        final Path template = Path.of("./src/main/resources/templates/salary-slip-template.docx");
+        final URL template = DocumentGenerationService.class.getResource("/templates/salary-slip-template.docx");
         final Path pdfOutput = Path.of("/tmp/generated-paycheck.pdf");
         documentGenerationService.generateDocument(template, pdfOutput, salarySlip);
     }

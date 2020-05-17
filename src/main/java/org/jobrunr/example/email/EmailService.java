@@ -1,6 +1,9 @@
 package org.jobrunr.example.email;
 
 import org.jobrunr.example.employee.Employee;
+import org.jobrunr.example.paycheck.DocumentGenerationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -12,6 +15,8 @@ import java.nio.file.Path;
 
 @Component
 public class EmailService {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
     public JavaMailSender emailSender;
 
@@ -29,7 +34,7 @@ public class EmailService {
         FileSystemResource file = new FileSystemResource(salarySlipPath);
         helper.addAttachment("Salary Slip", file);
         //emailSender.send(message); commented as we would otherwise send mails
-
+        LOGGER.info("Normally would send message");
     }
 
 }

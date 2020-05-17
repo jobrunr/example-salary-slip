@@ -20,7 +20,7 @@ import static java.time.LocalDate.now;
 @Component
 public class SalarySlipService {
 
-    private static final Path salarySlipTemplatePath = Path.of("src/main/resources/templates/salary-slip-template.docx");
+    private static final String salarySlipTemplate = "/templates/salary-slip-template.docx";
 
     private final EmployeeRepository employeeRepository;
     private final TimeClockService timeClockService;
@@ -56,7 +56,7 @@ public class SalarySlipService {
 
     private Path generateSalarySlipDocumentUsingTemplate(SalarySlip salarySlip) throws Exception {
         Path salarySlipPath = Paths.get(System.getProperty("java.io.tmpdir"), String.valueOf(now().getYear()), format("workweek-%d", salarySlip.getWorkWeek().getWeekNbr()), format("salary-slip-employee-%d.pdf", salarySlip.getEmployee().getId()));
-        documentGenerationService.generateDocument(salarySlipTemplatePath, salarySlipPath, salarySlip);
+        documentGenerationService.generateDocument(getClass().getResource(salarySlipTemplate), salarySlipPath, salarySlip);
         return salarySlipPath;
     }
 
