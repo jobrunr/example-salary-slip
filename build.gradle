@@ -11,7 +11,6 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    jcenter()
     mavenLocal()
 }
 
@@ -20,7 +19,7 @@ configurations.all {
 }
 
 dependencies {
-    implementation 'org.jobrunr:jobrunr:0.9.6'
+    implementation 'org.jobrunr:jobrunr:0.9.7'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
