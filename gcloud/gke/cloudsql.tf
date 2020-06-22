@@ -5,7 +5,7 @@ resource "google_sql_database_instance" "postgres" {
     tier = "db-g1-small"
     database_flags {
       name = "max_connections"
-      value = 100
+      value = 110
     }
   }
   timeouts {
