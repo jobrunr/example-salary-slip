@@ -9,12 +9,41 @@ group 'org.paycheck'
 version '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()
     mavenLocal()
+    mavenCentral()
 }
 
 configurations.all {
     exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+}
+
+assert hasProperty('javaHome'): "Set the property 'javaHome' in your your gradle.properties pointing to a Java 6 or 7 installation"
+assert hasProperty('targetJavaVersion'): "Set the property 'targetJavaVersion' in your your gradle.properties to '1.6' or '1.7'"
+
+def javaExecutablesPath = new File(javaHome, 'bin')
+def javaExecutables = [:].withDefault { execName ->
+    def executable = new File(javaExecutablesPath, execName)
+    assert executable.exists(): "There is no ${execName} executable in ${javaExecutablesPath}"
+    executable
+}
+tasks.withType(AbstractCompile) {
+    options.with {
+        fork = true
+        forkOptions.javaHome = file(javaHome)
+    }
+}
+tasks.withType(Javadoc) {
+    executable = javaExecutables.javadoc
+}
+tasks.withType(Test) {
+    executable = javaExecutables.java
+}
+tasks.withType(JavaExec) {
+    executable = javaExecutables.java
+}
+
+java {
+    disableAutoTargetJvm()
 }
 
 dependencies {
@@ -22,7 +51,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
-    implementation 'org.jobrunr:jobrunr:0.9.11'
+    implementation 'org.jobrunr:jobrunr:1.0.0-SNAPSHOT'
+    implementation 'org.jobrunr.plugins:jobrunr-loom:1.0-SNAPSHOT'
     implementation 'org.wickedsource.docx-stamper:docx-stamper:1.4.0'
     implementation 'org.docx4j:docx4j-core:8.1.6'
     implementation 'org.docx4j:docx4j-JAXB-ReferenceImpl:11.1.3'

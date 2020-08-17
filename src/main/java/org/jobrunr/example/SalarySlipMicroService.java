@@ -31,7 +31,7 @@ public class SalarySlipMicroService {
     public CommandLineRunner demo(EmployeeRepository repository) {
         final Faker faker = new Faker();
         return (args) -> {
-            for(int i = 0; i < 1000; i++) {
+            for(int i = 0; i < 2000; i++) {
                 repository.save(new Employee(faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress()));
             }
 
