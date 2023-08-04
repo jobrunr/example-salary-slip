@@ -1,8 +1,8 @@
 plugins {
     id 'java'
     id 'idea'
-    id 'org.springframework.boot' version '2.2.2.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'org.springframework.boot' version '3.1.1'
+    id 'io.spring.dependency-management' version '1.1.2'
 }
 
 group 'org.paycheck'
@@ -22,12 +22,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
-    implementation 'org.jobrunr:jobrunr:0.9.12'
-    implementation 'org.wickedsource.docx-stamper:docx-stamper:1.4.0'
-    implementation 'org.docx4j:docx4j-core:8.1.6'
-    implementation 'org.docx4j:docx4j-JAXB-ReferenceImpl:11.1.3'
-    implementation 'org.docx4j:docx4j-export-fo:8.1.6'
-
+    implementation 'org.jobrunr:jobrunr-spring-boot-3-starter:6.2.3'
+    implementation 'de.phip1611:docx4j-search-and-replace-util:1.0.7'
+    implementation 'org.docx4j:docx4j-JAXB-ReferenceImpl:11.4.9'
+    implementation 'org.docx4j:docx4j-export-fo:11.4.9'
 
     implementation 'com.github.javafaker:javafaker:1.0.2'
     implementation 'com.h2database:h2'
